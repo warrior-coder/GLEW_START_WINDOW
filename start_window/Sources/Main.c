@@ -28,23 +28,19 @@ int main(void)
     }
 
     // loop until the user closes the window
-    float angle = 0;
 
     while (!glfwWindowShouldClose(window))
     {
-        // render
-        glClearColor(0, 0, 0, 0);
+        // render image
+        glClearColor(0.5f, 0.5f, 0.5f, 1);
         glClear(GL_COLOR_BUFFER_BIT);
 
         glPushMatrix();
 
-        glRotatef(angle, 0, 0, 1);
-        angle += 0.1F;
-
         glBegin(GL_TRIANGLES);
-        glColor3f(1, 0, 0); glVertex2f(0, 1);
-        glColor3f(0, 1, 0); glVertex2f(0.87F, -0.5F);
-        glColor3f(0, 0, 1); glVertex2f(-0.87F, -0.5F);
+	        glColor3f(1, 0, 0); glVertex2f(0, 0.8f);
+	        glColor3f(0, 1, 0); glVertex2f(0.87f, -0.7f);
+	        glColor3f(0, 0, 1); glVertex2f(-0.87f, -0.7f);
         glEnd();
 
         glPopMatrix();
@@ -52,10 +48,12 @@ int main(void)
         // swap front and back buffers
         glfwSwapBuffers(window);
 
+
         // poll for and process events
         glfwPollEvents();
     }
 
     glfwTerminate();
+
     return 0;
 }
