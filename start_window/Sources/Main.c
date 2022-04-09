@@ -28,7 +28,6 @@ int main(void)
     }
 
     // loop until the user closes the window
-
     while (!glfwWindowShouldClose(window))
     {
         // render image
