@@ -1,5 +1,5 @@
-# GLFW START WINDOW
+# GLEW START WINDOW
 
-Basic code template for crating graphic window using OpenGL FrameWork.
+Basic code template for crating graphic window on C with OpenGL Extension Wrangler (GLEW) and OpenGL FrameWork (GLFW).
 
-![screenshot](Screenshots/screenshot_1.png)
+![screenshot](Screenshots/Screenshot1.png)

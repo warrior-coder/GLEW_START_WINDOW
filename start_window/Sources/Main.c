@@ -3,28 +3,29 @@
 
 int main(void)
 {
-    // initialize the library
+    // initialize OpenGL FrameWork (GLFW)
     if (!glfwInit())
     {
         return 1;
     }
 
     // create a windowed mode window and its OpenGL context
-    GLFWwindow* window = glfwCreateWindow(400, 400, "GLFW Start Window", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(400, 400, "GLEW Start Window", NULL, NULL);
 
     if (!window)
     {
         glfwTerminate();
-        return -1;
+        return 2;
     }
 
     // make the window's context current
     glfwMakeContextCurrent(window);
 
+    // initialize OpenGL Extension Wrangler (GLEW)
     if (glewInit() != GLEW_OK)
     {
         glfwTerminate();
-        return 1;
+        return 3;
     }
 
     // loop until the user closes the window
@@ -47,11 +48,11 @@ int main(void)
         // swap front and back buffers
         glfwSwapBuffers(window);
 
-
         // poll for and process events
         glfwPollEvents();
     }
 
+    // free memory
     glfwTerminate();
 
     return 0;
