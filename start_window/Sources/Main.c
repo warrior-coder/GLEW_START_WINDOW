@@ -1,9 +1,14 @@
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 
+/*
+GLEW (OpenGL Extension Wrangler) provides modern OpenGL functionality (shaders, vertex objects)
+GLFW (OpenGL FrameWork) provides creation and management multi-platform windows with OpenGL context and gives access to input 
+ */
+
 int main(void)
 {
-    // initialize OpenGL FrameWork (GLFW)
+    // initialize GLFW
     if (!glfwInit())
     {
         return 1;
@@ -21,7 +26,7 @@ int main(void)
     // make the window's context current
     glfwMakeContextCurrent(window);
 
-    // initialize OpenGL Extension Wrangler (GLEW)
+    // initialize GLEW only after we created a valid OpenGL rendering context
     if (glewInit() != GLEW_OK)
     {
         glfwTerminate();
