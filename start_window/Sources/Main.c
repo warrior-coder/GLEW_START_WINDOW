@@ -1,63 +1,66 @@
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 
+
 /*
-GLEW (OpenGL Extension Wrangler) provides modern OpenGL functionality (shaders, vertex objects)
-GLFW (OpenGL FrameWork) provides creation and management multi-platform windows with OpenGL context and gives access to input 
+GLEW (OpenGL Extension Wrangler) предоставляет современный функционал OpenGL (шейдеры, вершинные объекты)
+GLFW (OpenGL FrameWork) обеспечивает создание и управление мульти-платформенными окнами с контекстом OpenGL, предоставляет доступ к вводу
  */
+
 
 int main(void)
 {
-    // initialize GLFW
+    // инициализация GLFW
     if (!glfwInit())
     {
         return 1;
     }
 
-    // create a windowed mode window and its OpenGL context
-    GLFWwindow* window = glfwCreateWindow(400, 400, "GLEW Start Window", NULL, NULL);
 
+    // создание окна с контекстом OpenGL
+    GLFWwindow* window = glfwCreateWindow(400, 400, "GLEW Start Window", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
         return 2;
     }
+    glfwMakeContextCurrent(window); // делаем контекст окна текущим контекстом отрисовки
 
-    // make the window's context current
-    glfwMakeContextCurrent(window);
 
-    // initialize GLEW only after we created a valid OpenGL rendering context
+    // инициализация GLEW (только после подключения контекста отрисовки OpenGL)
     if (glewInit() != GLEW_OK)
     {
         glfwTerminate();
         return 3;
     }
 
-    // loop until the user closes the window
-    while (!glfwWindowShouldClose(window))
+
+    // основной цикл программы (до закрытия окна или нажатия Escape)
+    while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
-        // render image
+        // отрисовка изображения
         glClearColor(0.5f, 0.5f, 0.5f, 1);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glPushMatrix();
+        glPushMatrix(); // помещение матрицы в стек
 
         glBegin(GL_TRIANGLES);
-	        glColor3f(1, 0, 0); glVertex2f(0, 0.8f);
-	        glColor3f(0, 1, 0); glVertex2f(0.87f, -0.7f);
-	        glColor3f(0, 0, 1); glVertex2f(-0.87f, -0.7f);
+	        glColor3f(1, 0, 0); glVertex2f(0.0f, 0.75f);
+	        glColor3f(0, 1, 0); glVertex2f(0.87f, -0.75f);
+	        glColor3f(0, 0, 1); glVertex2f(-0.87f, -0.75f);
         glEnd();
 
-        glPopMatrix();
+        glPopMatrix(); // загрузка матрицы из стека (возвращение ее прежнего состояния)
 
-        // swap front and back buffers
+        // обмен переднего и заднего буферов
         glfwSwapBuffers(window);
 
-        // poll for and process events
+        // запрос на обработку событий
         glfwPollEvents();
     }
 
-    // free memory
+
+    // освобождение памяти
     glfwTerminate();
 
     return 0;
